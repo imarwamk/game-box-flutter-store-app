@@ -5,6 +5,7 @@ import 'package:game_box/core/app_text_style.dart';
 import 'package:game_box/core/background_custom.dart';
 import 'package:game_box/model/product.dart';
 import 'package:game_box/widgets/customAppBar.dart';
+import 'package:game_box/core/responsive.dart';
 
 class BagScreen extends StatefulWidget {
   const BagScreen({super.key});
@@ -32,12 +33,12 @@ class _BagScreenState extends State<BagScreen> {
                 itemBuilder: (context, index) {
                   final product = CartManager.cart[index];
                   return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 5,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.rs(14),
+                      vertical: context.rs(4),
                     ),
                     child: Container(
-                      height: 100,
+                      height: context.rs(84),
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.whiteOpacity05,
@@ -46,7 +47,10 @@ class _BagScreenState extends State<BagScreen> {
                       ),
                       child: Center(
                         child: ListTile(
+                          contentPadding: EdgeInsets.symmetric(horizontal: context.rs(10)),
                           leading: Container(
+                            width: context.rs(56),
+                            height: context.rs(56),
                             decoration: BoxDecoration(),
                             child: ClipRRect(
                               borderRadius: BorderRadiusGeometry.circular(10),
@@ -58,6 +62,8 @@ class _BagScreenState extends State<BagScreen> {
                           ),
                           title: Text(
                             product.proname,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: AppColors.white,
                               fontSize: 18,
@@ -66,7 +72,7 @@ class _BagScreenState extends State<BagScreen> {
                           ),
                           subtitle: Row(
                             children: [
-                          Image.asset('assets/sar.png',height: 20,),
+                          Image.asset('assets/sar.png', height: context.rs(15)),
                               Text(
                                 product.proprice,
                                 style: TextStyle(
@@ -80,8 +86,8 @@ class _BagScreenState extends State<BagScreen> {
                           trailing: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 60,
-                              height: 60,
+                              width: context.rs(42),
+                              height: context.rs(42),
                               decoration: BoxDecoration(
                                 color: AppColors.whiteOpacity9,
                                 borderRadius: BorderRadius.circular(10),
@@ -94,6 +100,8 @@ class _BagScreenState extends State<BagScreen> {
                                 blur: 70,
                                 colorOpacity: 0.09,
                                 overlay: IconButton(
+                                  padding: EdgeInsets.zero,
+                                  iconSize: context.rs(20),
                                   onPressed: () {
                                     setState(() {
                                       CartManager.cart.removeAt(index);
@@ -101,7 +109,7 @@ class _BagScreenState extends State<BagScreen> {
                                   },
                                   icon: Icon(Icons.delete_outline, color: AppColors.white),
                                 ),
-                                child: Padding(padding: EdgeInsets.all(20)),
+                                child: SizedBox.square(dimension: context.rs(42)),
                               ),
                             ),
                           ),
@@ -113,7 +121,7 @@ class _BagScreenState extends State<BagScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(context.rs(14)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -124,7 +132,7 @@ class _BagScreenState extends State<BagScreen> {
                     style: AppTextStyles.sectionTitle,
                   ),
                   SizedBox(width: 5,),
-                      Image.asset('assets/sar.png', height: 25),
+                      Image.asset('assets/sar.png', height: context.rs(18)),
                       Text(
                         '${totalPrice.toStringAsFixed(2)}',
                         style: TextStyle(
@@ -141,21 +149,22 @@ class _BagScreenState extends State<BagScreen> {
                   blur: 60,
                   colorOpacity: 0.06,
                   overlay: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: AppColors.whiteOpacity9),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(15),
+                      padding: EdgeInsets.zero,
                       child: Text(
                         'Checkout',
                         style: AppTextStyles.buttonPrimary
                       ),
                     ),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 25, horizontal: 51),
-                  ),
+                  child: SizedBox(width: context.rs(110), height: context.rs(44)),
                 ),
               ),
                 ],

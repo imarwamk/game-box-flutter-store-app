@@ -1,6 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:game_box/core/app%D9%80colors.dart';
+import 'package:game_box/core/responsive.dart';
 
 class MyCirelAvatar extends StatelessWidget {
   final Image image;
@@ -15,8 +16,8 @@ class MyCirelAvatar extends StatelessWidget {
         blur: 50,
         colorOpacity: 0.09,
         overlay: Container(
-          width: 80,
-          height: 80,
+          width: context.rs(58),
+          height: context.rs(58),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: AppColors.whiteOpacity02,
@@ -24,7 +25,7 @@ class MyCirelAvatar extends StatelessWidget {
           ),
           child: ClipOval(child: image),
         ),
-        child: Padding(padding: EdgeInsets.all(40)),
+        child: SizedBox.square(dimension: context.rs(58)),
       ),
     );
   }

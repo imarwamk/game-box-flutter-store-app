@@ -3,6 +3,7 @@ import 'package:game_box/core/app%D9%80colors.dart';
 import 'package:game_box/core/app_text_style.dart';
 import 'package:game_box/model/product.dart';
 import 'package:game_box/model/productList.dart';
+import 'package:game_box/core/responsive.dart';
 
 class BestOffersSection extends StatelessWidget {
   const BestOffersSection({super.key});
@@ -13,7 +14,7 @@ class BestOffersSection extends StatelessWidget {
       children: [
                       const SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.only(left: 20, right: 18),
+                padding: EdgeInsets.symmetric(horizontal: context.rs(16)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -22,14 +23,12 @@ class BestOffersSection extends StatelessWidget {
                     style: AppTextStyles.sectionTitle,
                     ),
                     Container(
-                      height: 30,
-                      width: 60,
-                      decoration: BoxDecoration(
+                decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         border: Border.all(color: AppColors.white, width: 0.5),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(3.0),
+                        padding: EdgeInsets.symmetric(horizontal: context.rs(12), vertical: context.rs(3)),
                         child: Text(
                           'More',
                           textAlign: TextAlign.center,

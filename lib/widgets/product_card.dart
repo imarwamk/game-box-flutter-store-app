@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:game_box/core/app%D9%80colors.dart';
 import 'package:game_box/model/product.dart';
 import 'package:like_button/like_button.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:game_box/core/responsive.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -14,10 +14,10 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 14, left: 5),
+      padding: EdgeInsets.only(top: context.rs(10), left: context.rs(4)),
       child: Container(
-        width: 247,
-        height: 270,
+        width: context.rs(165),
+        height: context.rs(210),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(13),
           color: const Color.fromARGB(39, 17, 17, 17),
@@ -31,12 +31,11 @@ class ProductCard extends StatelessWidget {
               top: 0,
               right: 0,
               left: 0,
+              bottom: 0,
               child: ClipRRect(
                 borderRadius: BorderRadiusGeometry.circular(10),
                 child: Image.asset(
                   product.proimage,
-                  width: 240,
-                  height: 250,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -54,7 +53,7 @@ class ProductCard extends StatelessWidget {
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                   child: Container(
-                    height: 100,
+                    height: context.rs(76),
                     decoration: BoxDecoration(
                       color: AppColors.blackOpacity08,
                     ),
@@ -67,9 +66,11 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 13.0),
+                  padding: EdgeInsets.symmetric(horizontal: context.rs(9)),
                   child: Text(
                     product.proname,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 15,
@@ -79,13 +80,13 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(13.0),
+                  padding: EdgeInsets.all(context.rs(8)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         children: [
-                          Image.asset('assets/sar.png',height: 20,),
+                          Image.asset('assets/sar.png', height: context.rs(15)),
                           Text(
                             product.proprice,
                             style: const TextStyle(
@@ -102,10 +103,10 @@ class ProductCard extends StatelessWidget {
                           border: Border.all(width: 0.5, color: AppColors.white),
                         ),
                         child: CircleAvatar(
-                          radius: 18,
+                          radius: context.rs(14),
                           backgroundColor: AppColors.whiteOpacity3,
                           child: LikeButton(
-                            size: 20,
+                            size: context.rs(16),
                             onTap: (isLiked) async {
                               if (!isLiked) {
                                 CartManager.cart.add(product);
@@ -117,6 +118,7 @@ class ProductCard extends StatelessWidget {
                             likeBuilder: (isTapped) {
                               return Icon(
                                 Icons.shopping_cart,
+                                size: context.rs(15),
                                 color: isTapped ? Colors.blue : AppColors.white,
                               );
                             },
@@ -129,7 +131,7 @@ class ProductCard extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(13.0),
+              padding: EdgeInsets.all(context.rs(8)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -139,10 +141,10 @@ class ProductCard extends StatelessWidget {
                       border: Border.all(width: 0.5, color: AppColors.white),
                     ),
                     child: CircleAvatar(
-                      radius: 18,
+                      radius: context.rs(14),
                       backgroundColor: AppColors.whiteOpacity3,
                       child: LikeButton(
-                        size: 20,
+                        size: context.rs(16),
                         onTap: (isLiked) async {
                           if (!isLiked) {
                             CartManager.favorites.add(product);
@@ -154,6 +156,7 @@ class ProductCard extends StatelessWidget {
                         likeBuilder: (isTapped) {
                           return Icon(
                             Icons.favorite,
+                            size: context.rs(15),
                             color: isTapped ? Colors.red : AppColors.white,
                           );
                         },
@@ -166,10 +169,11 @@ class ProductCard extends StatelessWidget {
                       border: Border.all(width: 0.5, color: AppColors.white),
                     ),
                     child: CircleAvatar(
-                      radius: 18,
+                      radius: context.rs(14),
                       backgroundColor: AppColors.whiteOpacity3,
                       child: Icon(
-                        LucideIcons.arrowUpRight,
+                        Icons.arrow_outward,
+                        size: context.rs(15),
                         color: AppColors.white,
                       ),
                     ),

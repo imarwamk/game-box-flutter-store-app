@@ -4,6 +4,7 @@ import 'package:game_box/core/app%D9%80colors.dart';
 import 'package:game_box/core/background_custom.dart';
 import 'package:game_box/model/product.dart';
 import 'package:game_box/widgets/customAppBar.dart';
+import 'package:game_box/core/responsive.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -26,12 +27,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 itemBuilder: (context, index) {
                   final product = CartManager.favorites[index];
                   return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 5,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.rs(14),
+                      vertical: context.rs(4),
                     ),
                     child: Container(
-                      height: 100,
+                      height: context.rs(84),
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.whiteOpacity05,
@@ -40,7 +41,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       ),
                       child: Center(
                         child: ListTile(
+                          contentPadding: EdgeInsets.symmetric(horizontal: context.rs(10)),
                           leading: Container(
+                            width: context.rs(56),
+                            height: context.rs(56),
                             decoration: BoxDecoration(),
                             child: ClipRRect(
                               borderRadius: BorderRadiusGeometry.circular(10),
@@ -52,6 +56,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           ),
                           title: Text(
                             product.proname,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: AppColors.white,
                               fontSize: 18,
@@ -60,7 +66,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           ),
                           subtitle: Row(
                             children: [
-                              Image.asset('assets/sar.png', height: 20),
+                              Image.asset('assets/sar.png', height: context.rs(15)),
                               Text(
                                 product.proprice,
                                 style: TextStyle(
@@ -74,8 +80,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           trailing: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              width: 60,
-                              height: 60,
+                              width: context.rs(42),
+                              height: context.rs(42),
                               decoration: BoxDecoration(
                                 color: AppColors.whiteOpacity9,
                                 borderRadius: BorderRadius.circular(10),
@@ -88,6 +94,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                 blur: 70,
                                 colorOpacity: 0.09,
                                 overlay: IconButton(
+                                  padding: EdgeInsets.zero,
+                                  iconSize: context.rs(20),
                                   onPressed: () {
                                     setState(() {
                                       CartManager.cart.removeAt(index);
@@ -95,7 +103,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                   },
                                   icon: Icon(Icons.delete_outline, color:AppColors.white),
                                 ),
-                                child: Padding(padding: EdgeInsets.all(20)),
+                                child: SizedBox.square(dimension: context.rs(42)),
                               ),
                             ),
                           ),

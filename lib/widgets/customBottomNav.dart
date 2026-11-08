@@ -2,6 +2,7 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:game_box/core/app%D9%80colors.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:game_box/core/responsive.dart';
 
 class CustomBottomNav extends StatelessWidget {
   final int currentIndex;
@@ -11,33 +12,46 @@ class CustomBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
+
     return Blur(
       blur: 50,
       colorOpacity: 0.09,
       overlay: Container(
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 110, 128, 195),
-          ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-          child: GNav(
-            color: AppColors.white,
-            activeColor: AppColors.white,
-            tabBackgroundColor: AppColors.whiteOpacity09,
-            tabBorder: Border.all(color: AppColors.whiteOpacity03, width: 1),
-            gap: 8,
-            onTabChange: onTap,
-            padding: const EdgeInsets.all(16),
-            tabs: const [
-              GButton(icon: Icons.home, text: 'Home'),
-              GButton(icon: Icons.shopping_bag, text: 'Bag'),
-              GButton(icon: Icons.favorite, text: 'Fav'),
-              GButton(icon: Icons.settings, text: 'Settings'),
-            ],
+        width: double.infinity,
+        height: double.infinity,
+        color: const Color.fromARGB(255, 110, 128, 195),
+        padding: EdgeInsets.only(
+          left: context.rs(12),
+          right: context.rs(12),
+          bottom: bottomInset,
+        ),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 560),
+            child: GNav(
+              color: AppColors.white,
+              activeColor: AppColors.white,
+              tabBackgroundColor: AppColors.whiteOpacity09,
+              tabBorder: Border.all(color: AppColors.whiteOpacity03, width: 1),
+              gap: context.rs(6),
+              iconSize: context.rs(20),
+              onTabChange: onTap,
+              padding: EdgeInsets.symmetric(
+                horizontal: context.rs(12),
+                vertical: context.rs(10),
+              ),
+              tabs: const [
+                GButton(icon: Icons.home, text: 'Home'),
+                GButton(icon: Icons.shopping_bag, text: 'Bag'),
+                GButton(icon: Icons.favorite, text: 'Fav'),
+                GButton(icon: Icons.settings, text: 'Settings'),
+              ],
+            ),
           ),
         ),
       ),
-      child: Padding(padding: EdgeInsets.all(47)),
+      child: SizedBox(height: context.rs(66) + bottomInset),
     );
   }
 }

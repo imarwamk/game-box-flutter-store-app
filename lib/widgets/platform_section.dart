@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:game_box/core/app%D9%80colors.dart';
 import 'package:game_box/core/app_text_style.dart';
 import 'package:game_box/widgets/cirelavatar.dart';
+import 'package:game_box/core/responsive.dart';
 
 class PlatformSection extends StatelessWidget {
   const PlatformSection({super.key});
@@ -12,7 +13,7 @@ class PlatformSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          padding: EdgeInsets.symmetric(horizontal: context.rs(16), vertical: 5),
           child: Text('Platform', style: AppTextStyles.sectionTitle),
         ),
         const SizedBox(height: 10),
@@ -23,18 +24,18 @@ class PlatformSection extends StatelessWidget {
             MyCirelAvatar(
               image: Image.asset('assets/ps.png', color: AppColors.white),
             ),
-            const SizedBox(width: 20),
+            SizedBox(width: context.rs(16)),
             MyCirelAvatar(
               image: Image.asset('assets/nine.png', color: AppColors.white),
             ),
-            const SizedBox(width: 20),
+            SizedBox(width: context.rs(16)),
             MyCirelAvatar(
               image: Image.asset('assets/xbox.png', color: AppColors.white),
             ),
             const SizedBox(width: 10),
           ],
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: context.rs(14)),
       ],
     );
   }

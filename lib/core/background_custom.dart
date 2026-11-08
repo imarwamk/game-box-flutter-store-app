@@ -1,6 +1,7 @@
-import 'dart:ui';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:game_box/core/responsive.dart';
 
 class BackgroundCustom extends StatelessWidget {
   final Widget child;
@@ -28,7 +29,15 @@ class BackgroundCustom extends StatelessWidget {
           ,
         ),
       ),
-      child: child,
+      child: LayoutBuilder(
+        builder: (context, constraints) => Center(
+          child: SizedBox(
+            width: math.min(constraints.maxWidth, maxContentWidth),
+            height: constraints.maxHeight,
+            child: child,
+          ),
+        ),
+      ),
     );
   }
 }
